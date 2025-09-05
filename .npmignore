@@ -1,0 +1,23 @@
+# Development directories
+examples/
+.github/
+
+# Configuration files
+.eslintrc.js
+.prettierrc.js
+tsconfig.json
+tsconfig.*.json
+
+# Build artifacts
+node_modules/
+dist/
+*.tgz
+
+# IDE settings
+.vscode/
+.idea/
+.DS_Store
+
+# Log files
+*.log
+pnpm-debug.log*

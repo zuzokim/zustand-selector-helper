@@ -1,0 +1,9 @@
+src/
+tsup.config.ts
+tsconfig.json
+node_modules/
+
+.eslintrc
+.prettierrc
+*.log
+.DS_Store
