@@ -29,6 +29,8 @@ pnpm add @zuzokim/zustand-selector-helper
 
 ### Example
 
+https://github.com/user-attachments/assets/e166552a-aba4-4096-af2f-918f1f37c877
+
 - see [React Example](https://github.com/zuzokim/zustand-selector-helper/blob/main/examples/react-example/src/App.tsx)
 
 ```bash
