@@ -3,7 +3,7 @@
 A utility library for creating type-safe and efficient selectors with [Zustand](https://github.com/pmndrs/zustand). Write concise code with string-based selector keys while maintaining full TypeScript support.
 
 [![npm version](https://img.shields.io/npm/v/@zuzokim/zustand-selector-helper.svg)](https://www.npmjs.com/package/@zuzokim/zustand-selector-helper)
-[![license](https://img.shields.io/npm/l/@zuzokim/zustand-selector-helper.svg)](https://github.com/zuzokim/zustand-selector-helper/blob/main/packages/zustand-selector-helper/LICENSE)
+[![license](https://img.shields.io/npm/l/@zuzokim/zustand-selector-helper.svg)](https://www.npmjs.com/package/@zuzokim/zustand-selector-helper)
 
 ## Features
 
@@ -27,9 +27,11 @@ pnpm add @zuzokim/zustand-selector-helper
 
 ## Usage
 
-### Example
+### Demo
 
 https://github.com/user-attachments/assets/e166552a-aba4-4096-af2f-918f1f37c877
+
+### Example
 
 - see [React Example](./examples/react-example/src/App.tsx)
 
