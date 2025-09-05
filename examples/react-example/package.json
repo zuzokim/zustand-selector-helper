@@ -1,7 +1,8 @@
 {
   "name": "zustand-selector-helper-react-example",
-  "private": true,
   "version": "0.0.1",
+  "description": "zustand selector helper react example",
+  "private": false,
   "type": "module",
   "scripts": {
     "dev": "vite",
