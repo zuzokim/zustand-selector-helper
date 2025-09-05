@@ -17,10 +17,6 @@
   "engines": {
     "node": ">=22.18.0"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
-    "access": "public"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/zuzokim/zustand-selector-helper",
