@@ -1,9 +1,9 @@
 # Zustand Selector Helper
 
-A utility library for creating type-safe and efficient selectors with Zustand. Write concise code with string-based selector keys while maintaining full TypeScript support.
+A utility library for creating type-safe and efficient selectors with [Zustand](https://github.com/pmndrs/zustand). Write concise code with string-based selector keys while maintaining full TypeScript support.
 
 [![npm version](https://img.shields.io/npm/v/@zuzokim/zustand-selector-helper.svg)](https://www.npmjs.com/package/@zuzokim/zustand-selector-helper)
-[![license](https://img.shields.io/npm/l/@zuzokim/zustand-selector-helper.svg)](https://github.com/zuzokim/zustand-selector-helper/blob/main/LICENSE)
+[![license](https://img.shields.io/npm/l/@zuzokim/zustand-selector-helper.svg)](https://github.com/zuzokim/zustand-selector-helper/blob/main/packages/zustand-selector-helper/LICENSE)
 
 ## Features
 
@@ -58,4 +58,3 @@ Contributions are always welcome! Please feel free to submit a Pull Request.
 ## License
 
 MIT License - see the [LICENSE](./LICENSE) file for details.
-

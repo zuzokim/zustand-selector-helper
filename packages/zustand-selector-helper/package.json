@@ -17,12 +17,16 @@
   "engines": {
     "node": ">=22.18.0"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/zuzokim/zustand-selector-helper",
     "directory": "packages/zustand-selector-helper"
   },
-  "homepage": "https://github.com/zuzokim/zustand-selector-helper#readme",
+  "homepage": "https://github.com/zuzokim/zustand-selector-helper/blob/main/packages/zustand-selector-helper#readme",
   "bugs": {
     "url": "https://github.com/zuzokim/zustand-selector-helper/issues"
   },
