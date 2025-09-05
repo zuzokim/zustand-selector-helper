@@ -6,6 +6,9 @@ node_modules/
 **/dist
 dist/
 
+# Package files
+*.tgz
+
 # Logs
 pnpm-debug.log*
 
