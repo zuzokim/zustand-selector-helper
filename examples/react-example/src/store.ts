@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { createTypedSelector } from 'zustand-selector-helper';
+import { createTypedSelector } from '@zuzokim/zustand-selector-helper';
 
 export interface Store {
   bears: number;

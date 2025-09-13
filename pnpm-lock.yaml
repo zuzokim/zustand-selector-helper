@@ -41,6 +41,9 @@ importers:
 
   examples/react-example:
     dependencies:
+      '@zuzokim/zustand-selector-helper':
+        specifier: workspace:*
+        version: link:../../packages/zustand-selector-helper
       react:
         specifier: ^18.2.0
         version: 18.3.1
@@ -50,9 +53,6 @@ importers:
       zustand:
         specifier: ^5.0.8
         version: 5.0.8(@types/react@18.3.24)(react@18.3.1)(use-sync-external-store@1.5.0(react@18.3.1))
-      zustand-selector-helper:
-        specifier: workspace:*
-        version: link:../../packages/zustand-selector-helper
     devDependencies:
       '@types/react':
         specifier: ^18.3.24

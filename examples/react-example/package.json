@@ -13,7 +13,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "zustand": "^5.0.8",
-    "zustand-selector-helper": "workspace:*"
+    "@zuzokim/zustand-selector-helper": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.3.24",
