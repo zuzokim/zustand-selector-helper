@@ -1,16 +1,100 @@
 # Zustand Selector Helper
 
-A utility library for creating type-safe and efficient selectors with [Zustand](https://github.com/pmndrs/zustand). Write concise code with string-based selector keys while maintaining full TypeScript support.
-
 [![npm version](https://img.shields.io/npm/v/@zuzokim/zustand-selector-helper.svg)](https://www.npmjs.com/package/@zuzokim/zustand-selector-helper)
 [![license](https://img.shields.io/npm/l/@zuzokim/zustand-selector-helper.svg)](https://www.npmjs.com/package/@zuzokim/zustand-selector-helper)
+A utility library for creating type-safe and efficient selectors with [Zustand](https://github.com/pmndrs/zustand). Write concise code with string-based selector keys while maintaining full TypeScript support.
 
-## Features
+## ✨ Why?
 
-- **Fully typed**: TypeScript support out of the box
-- **Performance**: Efficient selectors that prevent unnecessary re-renders
-- **Concise syntax**: Use string keys (`store('key')`) instead of selector functions (`store(state => state.key)`)
-- **Flexibility**: Works with any Zustand store structure
+With vanilla Zustand, if you want to select multiple pieces of state, you often end up writing verbose selector functions:
+
+```tsx
+const bears = useStore(state => state.bears);
+const fish = useStore(state => state.fish);
+const trees = useStore(state => state.trees);
+// ...and so on
+```
+
+A common workaround is to return an object literal. But this creates a new object on every render, even if the values didn’t change.
+
+```tsx
+const { state1, state2, state3 } = useStore(state => ({
+  state1: state.state1,
+  state2: state.state2,
+  state3: state.state3,
+  // ...and so on
+  // ⚠️ This object is freshly created on every render!
+}));
+
+// ❌ Zustand compares by reference
+// → The selector always returns a "new object"
+// → React thinks state changed
+// → Component re-renders infinitely
+```
+
+### ✅ Official recommendation: [useShallow](https://zustand.docs.pmnd.rs/hooks/use-shallow#useshallow)
+
+From the Zustand docs:
+
+> "When you need to subscribe to a computed state from a store, the recommended way is to use a selector.
+> The computed selector will cause a rerender if the output has changed according to Object.is.
+> In this case you might want to use useShallow to avoid a rerender if the computed value is always shallow equal the previous one."
+
+```tsx
+import { useShallow } from 'zustand/shallow';
+
+const { state1, state2 } = useStore(
+  useShallow(state => ({
+    state1: state.state1,
+    state2: state.state2,
+  })),
+);
+```
+
+## 🚀 How this zustand-selector-helper improves it
+
+While `useShallow` solves the re-render problem, the selector code is still:
+
+- 🔁 Repetitive (state1: state.state1)
+- 📜 Verbose (lots of boilerplate)
+- 🧩 Easy to mistype keys, less TypeScript-friendly
+
+With zustand-selector-helper, you can write:
+
+```tsx
+const { state1, state2, state3 } = useStore({
+  selectorKeys: ['state1', 'state2', 'state3'],
+});
+```
+
+### 🔍 How It Works
+
+Under the hood, this:
+
+- Automatically wraps selectors with Zustand's **built-in `useShallow`**.
+- Concise, **string-based** selectors instead of manual functions, removing the need to manually map state.key => state.key. Infers the selected state type from the store → no need to define return types manually.
+- Full **TypeScript safety** with autocompletion & key validation. Ensures only valid keys can be passed (selectorKeys are type-checked).
+
+So you get:
+
+✅ Shallow comparison (no unnecessary re-renders)
+✅ Type-safe key selection
+✅ Cleaner, more concise syntax
+
+## ✨ Features
+
+- **Type-safe by default** –
+  Works seamlessly with **React** + **Zustand**.
+  Autocompletion & key validation are fully supported out of the box.
+- **Performance optimized** –
+  Automatically uses Zustand’s `useShallow` for efficient updates.
+  This avoids unnecessary re-renders by doing shallow comparison of objects.
+  - ⚠️ Note: Zustand by default compares selector outputs with Object.is (reference equality). `useShallow` performs a shallow comparison (top-level properties only). If you need to track changes inside nested objects, you must handle it manually.
+- **Concise syntax** –
+  Write selectors with **string keys** (selectorKeys: ['key'])
+  instead of verbose selector functions (state => state.key).
+- **Flexible** –
+  Works with any Zustand store structure, whether flat or nested.
 
 ## Installation
 
@@ -25,11 +109,41 @@ yarn add @zuzokim/zustand-selector-helper
 pnpm add @zuzokim/zustand-selector-helper
 ```
 
-## Usage
+### Basic Usage
+
+1. Create a typed selector
+
+```tsx
+// store.ts
+import { createTypedSelector } from '@zuzokim/zustand-selector-helper';
+import { useBearBaseStore } from './bearStore';
+
+// Create a typed selector hook from your Zustand store
+export const useBearStore = createTypedSelector(useBearBaseStore);
+```
+
+2. Use in a React component
+
+```tsx
+// Example.tsx
+import { useBearStore } from './store';
+
+function Example() {
+  // Select only the keys you need
+  const { bears, fish } = useBearStore({ selectorKeys: ['bears', 'fish'] });
+
+  return (
+    <div>
+      <p>Bears: {bears}</p>
+      <p>Fish: {fish}</p>
+    </div>
+  );
+}
+```
 
 ### Demo
 
-https://github.com/user-attachments/assets/e166552a-aba4-4096-af2f-918f1f37c877
+![zustand-selector-helper-demo](./examples/react-example/public/zustand-selector-helper-demo.gif)
 
 ### Example
 
@@ -38,16 +152,6 @@ https://github.com/user-attachments/assets/e166552a-aba4-4096-af2f-918f1f37c877
 ```bash
 pnpm run dev
 ```
-
-### How It Works
-
-Under the hood, `zustand-selector-helper` uses Zustand's built-in `shallow` comparison function to optimize rendering. This means:
-
-- Components only re-render when the selected state value actually changes
-- Object equality is compared with shallow equality checking, not reference equality
-- When selecting multiple properties, changes to any selected property will trigger a re-render
-
-This allows you to write concise, performant selectors without manually implementing equality checks or memoization.
 
 ## Contributing
 
